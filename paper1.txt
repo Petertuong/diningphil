@@ -1,0 +1,37 @@
+pan: ltl formula nostarve
+pan:1: acceptance cycle (at depth 318)
+pan: wrote paper.pml.trail
+
+(Spin Version 6.5.2 -- 6 December 2019)
+Warning: Search not completed
+
+Full statespace search for:
+	never claim         	+ (nostarve)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 112 byte, depth reached 1242, errors: 1
+      938 states, stored (7605 visited)
+    13461 states, matched
+    21066 transitions (= visited+matched)
+     2823 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.125	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.284	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.160	memory used for DFS stack (-m3000)
+  128.356	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+ltl mutex: [] (! (((((((phil[0]==EATING)) && ((phil[1]==EATING))) || (((phil[0]==EATING)) && ((phil[4]==EATING)))) || (((phil[1]==EATING)) && ((phil[2]==EATING)))) || (((phil[2]==EATING)) && ((phil[3]==EATING)))) || (((phil[3]==EATING)) && ((phil[4]==EATING)))))
+ltl nostarve: [] ((! ((phil[0]==HUNGRY))) || (<> ((phil[0]==EATING))))
+ltl served: [] ((! (queued[0])) || (<> ((phil[0]==EATING))))
+  the model contains 3 never claims: served, nostarve, mutex
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N mutex)
+  or use e.g.: spin -search -ltl mutex paper.pml

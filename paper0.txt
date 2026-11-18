@@ -1,0 +1,48 @@
+pan: ltl formula served
+Depth=   28303 States=    1e+06 Transitions= 3.95e+06 Memory=   190.293	t=        1 R=   1e+06
+
+(Spin Version 6.5.2 -- 6 December 2019)
+
+Full statespace search for:
+	never claim         	+ (served)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 152 byte, depth reached 150574, errors: 0
+   336989 states, stored (1.57974e+06 visited)
+  5113271 states, matched
+  6693009 transitions (= visited+matched)
+   613772 atomic steps
+hash conflicts:     18911 (resolved)
+
+Stats on memory usage (in Megabytes):
+   57.848	equivalent memory usage for states (stored*(State-vector + overhead))
+   33.993	actual memory usage for states (compression: 58.76%)
+         	state-vector as stored = 78 byte + 28 byte overhead
+  128.000	memory used for hash table (-w24)
+   53.406	memory used for DFS stack (-m1000000)
+  215.293	total actual memory usage
+
+
+unreached in proctype P
+	paper.pml:29, state 12, "-end-"
+	(1 of 12 states)
+unreached in proctype A
+	paper.pml:53, state 23, "-end-"
+	(1 of 23 states)
+unreached in init
+	(0 of 13 states)
+unreached in claim served
+	_spin_nvr.tmp:30, state 13, "-end-"
+	(1 of 13 states)
+
+pan: elapsed time 1.95 seconds
+pan: rate 810122.05 states/second
+ltl mutex: [] (! (((((((phil[0]==EATING)) && ((phil[1]==EATING))) || (((phil[0]==EATING)) && ((phil[4]==EATING)))) || (((phil[1]==EATING)) && ((phil[2]==EATING)))) || (((phil[2]==EATING)) && ((phil[3]==EATING)))) || (((phil[3]==EATING)) && ((phil[4]==EATING)))))
+ltl nostarve: [] ((! ((phil[0]==HUNGRY))) || (<> ((phil[0]==EATING))))
+ltl served: [] ((! (queued[0])) || (<> ((phil[0]==EATING))))
+  the model contains 3 never claims: served, nostarve, mutex
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N mutex)
+  or use e.g.: spin -search -ltl mutex paper.pml
